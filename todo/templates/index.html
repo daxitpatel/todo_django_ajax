@@ -5,14 +5,16 @@
 <div class="container">
 
 		<div id="task-container">
-			<div id="form-wrapper">
+			<div id="form-wrapper" class="partial-form">
 				{% include 'partial_form.html' %}
 			</div>
 
 			<div id="list-wrapper">
-				{% for i in "abc1" %}
+				
+				<div class="partial-list">
 					{% include 'partial_list.html' %}
-				{% endfor %}
+				</div>
+				
 			
 			</div>
 		</div>

@@ -1,10 +1,13 @@
-<form id="form">
+<form id="form" todoid="" curl="{% url 'create' %}" >
+	{% csrf_token %}
 					<div class="flex-wrapper">
 						<div style="flex: 6">
-							<input id="title" class="form-control" type="text" name="title" placeholder="Add task" autocomplete="off">
+							<input id="content" required class="form-control" type="text" name="content" placeholder="Add task" autocomplete="off">
+							<input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
 						</div>
 						<div style="flex: 1">
-							<input id="submit" class="btn" type="submit" >
+							<input id="submit" class="btn btnsubmit" type="submit" >
 						</div>
 					</div>
+					<a id="link" style="visibility:hidden;" href="">cancel edit</a>
 				</form>

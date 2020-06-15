@@ -1,12 +1,31 @@
-<div id="data-row" class="task-wrapper flex-wrapper">
-	<div style="flex:7">
-		<span class="title">todocontent add new todo task</span>
-		<strike class="title">todo content</strike>
+{% for i in object_list %}
+<div id="data-row" class="task-wrapper">
+	
+	<div class="flex-wrapper">
+		<div style="flex:7">
+			{% if i.completed %}
+			<strike id="content{{ i.id }}" class="title">{{ i.content }}</strike>
+			{% else %}
+			<span id="content{{ i.id }}" class="title">{{ i.content }}</span>
+			{% endif %}
+			
+		</div>
+		
+		<div style="flex:1" class="mr-1">
+			<button datacat-id="{{ i.id }}" js-completed-url="{% url 'completed' %}" class="btn btn-sm {% if i.completed %} btn-success {% else %} btn-outline-success {% endif %} completed"><i  class="fa fa-check" aria-hidden="true"></i></button>
+		</div>
+		<div style="flex:1">
+			<button datacat-id="{{ i.id }}" js-edit-url="" class="btn btn-sm btn-outline-info edit">Edit</button>
+		</div>
+		<div class="ml-1" style="flex:1">
+			<button datacat-id="{{ i.id }}" js-delete-url="{% url 'delete' %}" class="btn btn-sm btn-outline-dark delete">-</button>
+		</div>
+		
+	
 	</div>
-	<div style="flex:1">
-		<button class="btn btn-sm btn-outline-info edit">Edit </button>
+	<div class="m-0 p-0" >
+		<p style="font-size: 0.7rem;" class="text-left text-secondary text-monospace">{{i.timestamp|timesince}} ago</p>
 	</div>
-	<div style="flex:1">
-		<button class="btn btn-sm btn-outline-dark delete">-</button>
-	</div>
+
 </div>
+{% endfor %}
